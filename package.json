@@ -4,7 +4,7 @@
     "license": "MIT",
     "author": "ShadowMoose",
     "description": "Toolkit for intelligent SQL data extraction.",
-    "homepage": "[TODO]",
+    "homepage": "https://github.com/shadowmoose/sql-sieve",
     "keywords": ["database", "utility", "sql", "mysql"],
     "buildEntryPoint": "index",
     "main": "dist/index.js",
@@ -14,9 +14,9 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+[TODO]"
+        "url": "git+https://github.com/shadowmoose/sql-sieve.git"
     },
-    "bugs": "[TODO]",
+    "bugs": "https://github.com/shadowmoose/sql-sieve/issues",
     "scripts": {
         "build": "tsc",
         "watch": "tsc --watch",
