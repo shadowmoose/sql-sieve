@@ -1,4 +1,4 @@
-# Database Tool
+# SQL Sieve
 
 This to-be-named tool helps with Database access,
 as well as providing powerful tools to recursively pick specific row data for staging and testing.
