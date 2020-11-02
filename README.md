@@ -1,5 +1,24 @@
-# TypeScript Project Template
+# Database Tool
 
-To use this template, load it via GitHub or copy these files into a new git repo.
+This to-be-named tool helps with Database access,
+as well as providing powerful tools to recursively pick specific row data for staging and testing.
 
-Once it's part of your project, open the ```package.json``` and edit all the "TODO" strings.
+See [tests](./tests) for more.
+
+```typescript
+let db = new Database({
+    database: 'test_db',
+    password: 'password',
+    user: 'root'
+});
+const row = await db.tables['USERS'].select({ id: 1 });
+const tree = await db.findTree(row, true);
+// The variable "tree" now contains a map of all the rows required to migrate the selected data into a fresh DB.
+
+console.log(tree);
+/*
+Outputs something like:
+{ USERS: [ Row { table: [Table], id: '[1]', data: [TextRow] } ],
+      SECOND_TABLE: [ Row { table: [Table], id: '[2]', data: [TextRow] } ] }
+*/
+```
