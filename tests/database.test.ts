@@ -1,10 +1,11 @@
 import { Database } from "../src";
 import { Trigger } from "../src/sql/triggers";
+const config = require('./setup/test-db-config');
 
 let db = new Database({
-    database: 'testdb',
-    password: 'dbtest',
-    user: 'root',
+    database: config.DB_NAME,
+    password: config.PASSWORD,
+    user: config.USER,
 });
 
 
@@ -18,7 +19,6 @@ describe("Database tests", () => {
         const tree = await db.findTree(row, true);
 
         expect(tree['SECOND_TABLE'][0].id).toEqual('[2]');
-        console.log(tree);
     });
 
     it('Triggers should load', async () => {
