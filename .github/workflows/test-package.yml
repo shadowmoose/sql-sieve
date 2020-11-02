@@ -4,12 +4,20 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
+    
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ROOT_PASSWORD: dbtest
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 13.x, 14.x]
+        node-version: [12.x, 13.x, 14.x]
 
     steps:
     - uses: actions/checkout@v1
