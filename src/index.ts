@@ -2,7 +2,6 @@ export * from './sql/table';
 export * from './sql/row';
 export * from './sql/database';
 
-// TODO: Triggers, as a last-in thing after restores are complete.
 // TODO: Views (SHOW CREATE VIEW)
 
 

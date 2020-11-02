@@ -26,6 +26,13 @@ describe("Database tests", () => {
         expect(trig.toSQL()).toContain(trig.name);
     });
 
+    it('Locks should work', async () => {
+        const res = await db.withLock(() => {
+            return 'OK'
+        });
+        expect(res).toEqual('OK');
+    });
+
     afterAll(() => {
         db.disconnect()
     });
