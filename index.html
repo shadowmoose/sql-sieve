@@ -65,7 +65,7 @@
 				<a href="#sql-sieve" id="sql-sieve" style="color: inherit; text-decoration: none;">
 					<h1>SQL Sieve</h1>
 				</a>
-				<p>This to-be-named tool helps with Database access,
+				<p>This tool helps with Database access,
 				as well as providing powerful tools to recursively pick specific row data for staging and testing.</p>
 				<p>See <a href="./tests">tests</a> for more.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">let</span> db = <span class="hljs-keyword">new</span> Database({
@@ -75,7 +75,7 @@
 });
 <span class="hljs-keyword">const</span> row = <span class="hljs-keyword">await</span> db.tables[<span class="hljs-string">&#x27;USERS&#x27;</span>].select({ <span class="hljs-attr">id</span>: <span class="hljs-number">1</span> });
 <span class="hljs-keyword">const</span> tree = <span class="hljs-keyword">await</span> db.findTree(row, <span class="hljs-literal">true</span>);
-<span class="hljs-comment">// The variable &quot;tree&quot; now contains a map of all the rows required to migrate the selected data into a fresh DB.</span>
+<span class="hljs-comment">// &quot;tree&quot; now contains a map of all the rows required to migrate the selected data into a fresh DB.</span>
 
 <span class="hljs-built_in">console</span>.log(tree);
 <span class="hljs-comment">/*
