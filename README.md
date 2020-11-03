@@ -1,6 +1,6 @@
 # SQL Sieve
 
-This to-be-named tool helps with Database access,
+This tool helps with Database access,
 as well as providing powerful tools to recursively pick specific row data for staging and testing.
 
 See [tests](./tests) for more.
@@ -13,7 +13,7 @@ let db = new Database({
 });
 const row = await db.tables['USERS'].select({ id: 1 });
 const tree = await db.findTree(row, true);
-// The variable "tree" now contains a map of all the rows required to migrate the selected data into a fresh DB.
+// "tree" now contains a map of all the rows required to migrate the selected data into a fresh DB.
 
 console.log(tree);
 /*
