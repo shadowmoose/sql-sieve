@@ -1,4 +1,5 @@
 # SQL Sieve
+![Lines of Code](https://raw.githubusercontent.com/shadowmoose/sql-sieve/image-data/loc-badge.svg) [![npm](https://img.shields.io/npm/v/sql-sieve)](https://www.npmjs.com/package/sql-sieve)
 
 This tool helps with Database access,
 as well as providing powerful tools to recursively pick specific row data for staging and testing.
