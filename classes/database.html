@@ -92,9 +92,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="database.html#connection" class="tsd-kind-icon">connection</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="database.html#database-1" class="tsd-kind-icon">database</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="database.html#locks" class="tsd-kind-icon">locks</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="database.html#pool" class="tsd-kind-icon">pool</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="database.html#tables" class="tsd-kind-icon">tables</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="database.html#triggers" class="tsd-kind-icon">triggers</a></li>
 							</ul>
@@ -108,12 +107,9 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="database.html#branchfind" class="tsd-kind-icon">branch<wbr>Find</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#disconnect" class="tsd-kind-icon">disconnect</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#findtree" class="tsd-kind-icon">find<wbr>Tree</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#getlock" class="tsd-kind-icon">get<wbr>Lock</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#loadall" class="tsd-kind-icon">load<wbr>All</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#loadtables" class="tsd-kind-icon">load<wbr>Tables</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#loadtriggers" class="tsd-kind-icon">load<wbr>Triggers</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#releaselock" class="tsd-kind-icon">release<wbr>Lock</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="database.html#withlock" class="tsd-kind-icon">with<wbr>Lock</a></li>
 							</ul>
 						</section>
 					</div>
@@ -125,19 +121,19 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Database<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConnectionOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="database.html" class="tsd-signature-type">Database</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Database<span class="tsd-signature-symbol">(</span>opts<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConnectionOptions</span><span class="tsd-signature-symbol"> | </span><a href="dbconnection.html" class="tsd-signature-type">DBConnection</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="database.html" class="tsd-signature-type">Database</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L14">sql/database.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L14">sql/database.ts:14</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>opts: <span class="tsd-signature-type">ConnectionOptions</span></h5>
+									<h5>opts: <span class="tsd-signature-type">ConnectionOptions</span><span class="tsd-signature-symbol"> | </span><a href="dbconnection.html" class="tsd-signature-type">DBConnection</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="database.html" class="tsd-signature-type">Database</a></h4>
@@ -148,32 +144,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="connection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> connection</h3>
+					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <a href="dbconnection.html" class="tsd-signature-type">DBConnection</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L13">sql/database.ts:13</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="database-1" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> database</h3>
 					<div class="tsd-signature tsd-kind-icon">database<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L13">sql/database.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="locks" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> locks</h3>
-					<div class="tsd-signature tsd-kind-icon">locks<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Connection</span><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L14">sql/database.ts:14</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="pool" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> pool</h3>
-					<div class="tsd-signature tsd-kind-icon">pool<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pool</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L12">sql/database.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L14">sql/database.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -183,7 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">tables<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="table.html" class="tsd-signature-type">Table</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L10">sql/database.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L11">sql/database.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -193,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">triggers<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="trigger.html" class="tsd-signature-type">Trigger</a><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L11">sql/database.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L12">sql/database.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -210,7 +196,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L46">sql/database.ts:46</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L51">sql/database.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -238,7 +224,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L70">sql/database.ts:70</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L75">sql/database.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -268,7 +254,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L131">sql/database.ts:131</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L136">sql/database.ts:136</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -296,7 +282,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L104">sql/database.ts:104</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L109">sql/database.ts:109</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -330,7 +316,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L29">sql/database.ts:29</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L34">sql/database.ts:34</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -352,7 +338,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L83">sql/database.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L88">sql/database.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -382,42 +368,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="getlock" class="tsd-anchor"></a>
-					<h3>get<wbr>Lock</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Lock<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L156">sql/database.ts:156</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Manually acquire a named Lock, which no other connection to the database can share until it is released.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="database.html#withlock">withLock</a>, <a href="database.html#releaselock">releaseLock</a></p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;db-tool-lock&quot;</span></h5>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = -1</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="loadall" class="tsd-anchor"></a>
 					<h3>load<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -427,7 +377,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L36">sql/database.ts:36</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L41">sql/database.ts:41</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -449,7 +399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L57">sql/database.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L62">sql/database.ts:62</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -471,7 +421,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L139">sql/database.ts:139</a></li>
+									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/63f2c5f/src/sql/database.ts#L144">sql/database.ts:144</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -480,86 +430,6 @@
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="releaselock" class="tsd-anchor"></a>
-					<h3>release<wbr>Lock</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">release<wbr>Lock<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L168">sql/database.ts:168</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Release a named lock, if it is currently being held by this wrapper.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;db-tool-lock&quot;</span></h5>
-									<div class="tsd-comment tsd-typography">
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="withlock" class="tsd-anchor"></a>
-					<h3>with<wbr>Lock</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Lock<span class="tsd-signature-symbol">(</span>cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span>, lockName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, timeout<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/shadowmoose/sql-sieve/blob/1566448/src/sql/database.ts#L189">sql/database.ts:189</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Runs the given callback inside a Lock, preventing any other clients from using the same lock name database-wide.
-									Releases the lock automatically once the callback finishes, even if an error is raised.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>see</dt>
-									<dd><p><a href="database.html#getlock">getLock</a></p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>cb: <span class="tsd-signature-type">Function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The callback to run once inside the lock. Can be async.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> lockName: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> = &quot;db-tool-lock&quot;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The lock name, if a specific lock is desired.</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> timeout: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = -1</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The timeout, if one is desired. Defaults to infinite time (any negative value).</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-							<p>The result of running the given callback.</p>
 						</li>
 					</ul>
 				</section>
@@ -575,6 +445,9 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="dbconnection.html" class="tsd-kind-icon">DBConnection</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
@@ -584,13 +457,10 @@
 								<a href="database.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="database.html#database-1" class="tsd-kind-icon">database</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="database.html#locks" class="tsd-kind-icon">locks</a>
+								<a href="database.html#connection" class="tsd-kind-icon">connection</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="database.html#pool" class="tsd-kind-icon">pool</a>
+								<a href="database.html#database-1" class="tsd-kind-icon">database</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="database.html#tables" class="tsd-kind-icon">tables</a>
@@ -617,9 +487,6 @@
 								<a href="database.html#findtree" class="tsd-kind-icon">find<wbr>Tree</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="database.html#getlock" class="tsd-kind-icon">get<wbr>Lock</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="database.html#loadall" class="tsd-kind-icon">load<wbr>All</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -627,12 +494,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="database.html#loadtriggers" class="tsd-kind-icon">load<wbr>Triggers</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="database.html#releaselock" class="tsd-kind-icon">release<wbr>Lock</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="database.html#withlock" class="tsd-kind-icon">with<wbr>Lock</a>
 							</li>
 						</ul>
 					</li>
