@@ -1,7 +1,8 @@
 import {Table} from "./table";
 import { Row } from "./row";
 import * as mysql2 from 'mysql2/promise';
-import {Trigger} from "./triggers";
+import { Trigger } from "./triggers";
+import {DBConnection} from "./dbconnection";
 
 /**
  * The core wrapper for MySQL access.
@@ -9,25 +10,29 @@ import {Trigger} from "./triggers";
 export class Database {
     public readonly tables: Record<string, Table> = {};
     public readonly triggers: Record<string, Trigger> = {};
-    public readonly pool: mysql2.Pool;
+    public readonly connection: DBConnection;
     public readonly database: string;
-    private readonly locks: Record<string, mysql2.Connection> = {};
 
-    constructor(opts: mysql2.ConnectionOptions) {
+    constructor(opts: mysql2.ConnectionOptions | DBConnection) {
         if (!opts.database) throw Error('Database name is required when connecting!');
-        this.pool = mysql2.createPool({
-            waitForConnections: true,
-            connectionLimit: 10,
-            ...opts,
-        });
-        this.database = opts.database;
+        if (opts instanceof DBConnection) {
+            this.connection = opts;
+            this.database = opts.database;
+        } else {
+            this.connection = new DBConnection({
+                waitForConnections: true,
+                connectionLimit: 10,
+                ...opts,
+            });
+            this.database = opts.database;
+        }
     }
 
     /**
      * Kill all open connections to this Database. Make sure you call this before exit.
      */
     public async disconnect() {
-        return this.pool.end();
+        return this.connection.end();
     }
 
     /**
@@ -46,7 +51,7 @@ export class Database {
     public addTable(table: Table) {
         if (this.tables[table.name]) throw Error('Cannot add the same table more than once!')
         this.tables[table.name] = table;
-        table.pool = this.pool;
+        table.dbConn = this.connection;
 
         return table;
     }
@@ -55,10 +60,10 @@ export class Database {
      * Load all the Tables this connection has access to, directly from the Database.
      */
     public async loadTables() {
-        const [names]: any[] = await this.pool.query(`SELECT table_name FROM information_schema.tables WHERE table_schema = '${this.database}'`);
+        const [names]: any[] = await this.connection.query(`SELECT table_name FROM information_schema.tables WHERE table_schema = '${this.database}'`);
 
         await Promise.all(names.map(async (t: any) => {
-            const [def]: any[] = await this.pool.query(`SHOW CREATE TABLE ${t.TABLE_NAME}`);
+            const [def]: any[] = await this.connection.query(`SHOW CREATE TABLE ${t.TABLE_NAME}`);
             this.addTableSQL(def[0]['Create Table']);
         }));
     }
@@ -137,62 +142,14 @@ export class Database {
      * Loads all Triggers that this connection has access to read, directly from the database.
      */
     public async loadTriggers() {
-        const [triggers]: any[] = await this.pool.query('SHOW TRIGGERS');
+        const [triggers]: any[] = await this.connection.query('SHOW TRIGGERS');
         const names: string[] = triggers.map((t: any) => t.Trigger);
 
         await Promise.all(names.map( async trigger => {
-            const [res]: any[] = await this.pool.query(`SHOW CREATE TRIGGER ${trigger}`);
+            const [res]: any[] = await this.connection.query(`SHOW CREATE TRIGGER ${trigger}`);
             const sql = res[0]['SQL Original Statement'];
             this.addTrigger(new Trigger(trigger, sql));
         }))
-    }
-
-    /**
-     * Manually acquire a named Lock, which no other connection to the database can share until it is released.
-     * @param name
-     * @param timeout
-     * @see {@link withLock}, {@link releaseLock}
-     */
-    public async getLock(name: string = 'db-tool-lock', timeout: number = -1): Promise<number|null> {
-        await this.releaseLock(name);
-        const conn = await this.pool.getConnection();
-        this.locks[name] = conn;
-        const [res]: any[] = await conn.query(`SELECT GET_LOCK(?, ?) as "Lock"`, [name, timeout]);
-        return res[0].Lock;
-    }
-
-    /**
-     * Release a named lock, if it is currently being held by this wrapper.
-     * @param name
-     */
-    public async releaseLock(name: string = 'db-tool-lock') {
-        const lock = this.locks[name];
-        if (lock) {
-            delete this.locks[name];
-            await lock.query(`SELECT RELEASE_LOCK(?)`, [name]);
-            // @ts-ignore
-            await lock.release();
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * Runs the given callback inside a Lock, preventing any other clients from using the same lock name database-wide.
-     * Releases the lock automatically once the callback finishes, even if an error is raised.
-     * @param cb The callback to run once inside the lock. Can be async.
-     * @param lockName The lock name, if a specific lock is desired.
-     * @param timeout The timeout, if one is desired. Defaults to infinite time (any negative value).
-     * @returns The result of running the given callback.
-     * @see {@link getLock}
-     */
-    public async withLock(cb: Function, lockName: string = 'db-tool-lock', timeout: number = -1) {
-        try {
-            await this.getLock(lockName, timeout);
-            return await cb();
-        } finally {
-            await this.releaseLock(lockName);
-        }
     }
 }
 

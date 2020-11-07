@@ -1,15 +1,18 @@
 import { Database } from "../src";
 import { Trigger } from "../src/sql/triggers";
+import {DBConnection} from "../src/sql/dbconnection";
 const config = require('./setup/test-db-config');
 
-let db = new Database({
+const conn = new DBConnection({
     database: config.DB_NAME,
     password: config.PASSWORD,
     user: config.USER,
 });
 
+let db = new Database(conn);
 
-describe("Database tests", () => {
+
+describe("Database & Connection Tests", () => {
     beforeAll(async () => {
         await db.loadAll();
     });
@@ -27,10 +30,15 @@ describe("Database tests", () => {
     });
 
     it('Locks should work', async () => {
-        const res = await db.withLock(() => {
+        const res = await conn.withLock(() => {
             return 'OK'
         });
         expect(res).toEqual('OK');
+    });
+
+    it('Connection query should work', async () => {
+        const res = await conn.select('USERS', { id: 1, firstname: 'first' });
+        expect(res[0].id).toEqual(1);
     });
 
     afterAll(() => {

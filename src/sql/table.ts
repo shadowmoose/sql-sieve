@@ -4,7 +4,7 @@ import { memoize } from "../util/decorators";
 import { createHash } from 'crypto';
 import { v4 } from 'uuid';
 import { Row } from "./row";
-import { Pool } from 'mysql2/promise';
+import {DBConnection} from "./dbconnection";
 
 /**
  * Wrapper for a Table within the Database.
@@ -14,7 +14,7 @@ import { Pool } from 'mysql2/promise';
 export class Table {
     private readonly parser: Parser;
     private ast: CreateTableAst;
-    public pool: Pool|null = null;
+    public dbConn: DBConnection|null = null;
 
     constructor(sql: string) {
         this.parser = new Parser();
@@ -115,14 +115,9 @@ export class Table {
      * @param where
      */
     async select(where: Record<string, any>): Promise<Row[]> {
-        const colNames = this.columns.map(c => c.column.column);
-        const colSQL = colNames.join(', ');
-        const whereSQL = Object.keys(where).map(k => `${k} = ?`).join(' AND ');
-        let sql = `SELECT ${colSQL} FROM ${this.name} WHERE ${whereSQL}`;
+        if (!this.dbConn) throw Error('Tried to query without Pool!');
 
-        if (!this.pool) throw Error('Tried to query without Pool!');
-
-        const [rows]: any[] = await this.pool.query(sql, Object.values(where));
+        const rows = await this.dbConn.select(this.name, where);
 
         return rows.map((data: object) => {
             return new Row(this, this.uniqueRowID(data), data);
