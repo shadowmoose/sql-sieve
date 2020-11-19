@@ -12,6 +12,9 @@ let db = new Database({
     password: 'password',
     user: 'root'
 });
+
+await db.loadAll();
+
 const row = await db.tables['USERS'].select({ id: 1 });
 const tree = await db.findTree(row, true);
 // "tree" now contains a map of all the rows required to migrate the selected data into a fresh DB.
