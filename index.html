@@ -74,6 +74,9 @@
     <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;password&#x27;</span>,
     <span class="hljs-attr">user</span>: <span class="hljs-string">&#x27;root&#x27;</span>
 });
+
+<span class="hljs-keyword">await</span> db.loadAll();
+
 <span class="hljs-keyword">const</span> row = <span class="hljs-keyword">await</span> db.tables[<span class="hljs-string">&#x27;USERS&#x27;</span>].select({ <span class="hljs-attr">id</span>: <span class="hljs-number">1</span> });
 <span class="hljs-keyword">const</span> tree = <span class="hljs-keyword">await</span> db.findTree(row, <span class="hljs-literal">true</span>);
 <span class="hljs-comment">// &quot;tree&quot; now contains a map of all the rows required to migrate the selected data into a fresh DB.</span>
